@@ -28,6 +28,15 @@ class User{
     return false;
   }
 
+  static bool adduser(User user){
+    for(User u in users){
+      if(u.number==user.number)
+        return false;
+    }
+    users.add(user);
+    return true;
+  }
+
   static void init(){
     users.add(User('陈龙', '万年老二','19960209350', '123456', 1, null, 1));
     users.add(User('邹存玉', '万年老二','19960209351', '123456', 1, null, 0));
