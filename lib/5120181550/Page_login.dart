@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loginapp/5120181550/Page_Main.dart';
 
 class Page_login extends StatefulWidget{
 
@@ -13,7 +14,7 @@ class Page_login extends StatefulWidget{
 class _PageloginState extends State<Page_login>{
   bool showpass=false;
   void _login(){
-    //login
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main()));
   }
 
   void dismiss(){
