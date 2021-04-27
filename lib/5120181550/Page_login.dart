@@ -11,9 +11,15 @@ class Page_login extends StatefulWidget{
 }
 
 class _PageloginState extends State<Page_login>{
-
+  bool showpass=false;
   void _login(){
     //login
+  }
+
+  void dismiss(){
+    setState(() {
+      showpass=!showpass;
+    });
   }
 
   @override
@@ -23,34 +29,55 @@ class _PageloginState extends State<Page_login>{
       appBar: AppBar(
         title: Text('Page_Login'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                icon: Icon(Icons.phone),
-                labelText: '请输入手机号码'
-              ),
-              keyboardType: TextInputType.number,
-              autofocus: false,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  icon: Icon(Icons.add_to_home_screen),
-                  labelText: '请输入密码'
-              ),
-              obscureText: true,
-              keyboardType: TextInputType.visiblePassword,
-              autofocus: false,
-            ),
-            RaisedButton(
-              child: Text('登录',),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: _login),
-          ],
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: 15,
+          right: 15,
+          top: 15
         ),
-      ),
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 80,
+                child: TextField(
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.phone_android_outlined),
+                      hintText: '请输入手机号码',
+                      helperText: '您注册时的电话号码',
+                      border: OutlineInputBorder()
+                  ),
+                  keyboardType: TextInputType.number,
+                  autofocus: false,
+                ),
+              ),
+              SizedBox(
+                height: 80,
+                child: TextField(
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock_outline),
+                      hintText: '请输入密码',
+                      helperText: '您设置的登陆密码',
+                      suffix: IconButton(onPressed: dismiss, icon: Icon(showpass? Icons.visibility_outlined:Icons.visibility_off_outlined)),
+                      border: OutlineInputBorder()
+                  ),
+                  obscureText: !showpass,
+                  keyboardType: TextInputType.visiblePassword,
+                  autofocus: false,
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  child: Text('登录',),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  onPressed: _login)
+              ),
+            ],
+          ),
+        ),
+      )
     );
   }
 
