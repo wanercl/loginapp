@@ -40,10 +40,10 @@ class _PageloginState extends State<loginpage>{
             child: Column(
               children: [
                 SizedBox(
-                  height: 100,
+                  height: 120,
                   child: TextField(
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone_android_outlined),
+                        prefixIcon: Icon(Icons.person),
                         hintText: 'Mobile phone number',
                         helperText: 'Mobile phone number at the time of registration',
                         border: OutlineInputBorder()
@@ -58,7 +58,7 @@ class _PageloginState extends State<loginpage>{
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock_outline),
                         hintText: 'password',
-                        helperText: 'your password',
+                        helperText: 'Your password',
                         suffix: IconButton(onPressed: dismiss, icon: Icon(showpass? Icons.visibility_outlined:Icons.visibility_off_outlined)),
                         border: OutlineInputBorder()
                     ),
@@ -72,7 +72,7 @@ class _PageloginState extends State<loginpage>{
                     child: RaisedButton(
                         child: Text('login',),
                         textColor: Colors.black,
-                        color: Colors.yellow,
+                        color: Colors.greenAccent,
                         onPressed: _login)
                 ),
               ],
@@ -82,3 +82,35 @@ class _PageloginState extends State<loginpage>{
     );
   }
 }
+
+//用户注册
+Align buildRegisterText(BuildContext context){
+  return Align(
+    alignment: Alignment.center,
+    child: Padding(
+      padding: EdgeInsets.only(top:10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('No account?'),
+          GestureDetector(
+            child: Text(
+              'Click on the register',
+              style: TextStyle(color: Colors.greenAccent),
+            ),
+            onTap: (){
+              _toRegisterPage(context);//跳转注册页面方法
+            },
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+_toRegisterPage(BuildContext context) async{
+  final
+}
+
+
+
