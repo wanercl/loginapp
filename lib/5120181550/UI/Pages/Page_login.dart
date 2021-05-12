@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:loginapp/5120181550/Page_Main.dart';
-import 'package:loginapp/5120181550/Page_SignUp.dart';
 import 'package:loginapp/DataBase.dart';
+
+import 'Page_Main.dart';
+import 'Page_SignUp.dart';
 
 class Page_login extends StatefulWidget{
 
@@ -19,9 +20,10 @@ class _PageloginState extends State<Page_login>{
   TextEditingController number=TextEditingController();
   TextEditingController pass=TextEditingController();
   void _login(){
-    if(User.check(number.value.text,pass.value.text)){
+    User u=User.check(number.value.text,pass.value.text);
+    if(u!=null){
       Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main()));
+      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main(u)));
     }
     else
       Fluttertoast.showToast(msg: '手机号或密码错误');

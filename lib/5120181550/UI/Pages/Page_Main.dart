@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loginapp/5120181550/Fragment_Acount.dart';
-import 'package:loginapp/5120181550/Fragment_Home.dart';
-import 'package:loginapp/5120181550/Page_Help.dart';
+import 'package:loginapp/5120181550/UI/Fragments/Fragment_Acount.dart';
+import 'package:loginapp/5120181550/UI/Fragments/Fragment_Home.dart';
+import 'package:loginapp/DataBase.dart';
+
+import 'Page_Help.dart';
 
 class Page_Main extends StatefulWidget{
+
+  User u;
+
+  Page_Main(this.u);
 
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +24,14 @@ class _Page_MainState extends State<Page_Main>{
 
   int _currentpage=0;
 
-  final List<Widget> fragments=[Fragment_Home(),Fragment_Acount()];
+  List<Widget> fragments;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fragments=[Fragment_Home(),Fragment_Acount(widget.u)];
+  }
 
   void _help(){
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Help()));
@@ -30,6 +43,8 @@ class _Page_MainState extends State<Page_Main>{
       _currentpage=index;
     });
   }
+
+  TabController _tabController; //需要定义一个Controller
 
   @override
   Widget build(BuildContext context) {
