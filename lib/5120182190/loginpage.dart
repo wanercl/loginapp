@@ -1,6 +1,7 @@
 
+
 import 'package:flutter/material.dart';
-import 'package:loginapp/5120182190/loginmain.dart';
+
 
 class loginmain extends StatefulWidget{
 
@@ -29,7 +30,7 @@ class _loginmain extends State<loginmain>{
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: Text('Page_Login'),
+          title: Text('登陆界面'),
         ),
         body: Padding(
           padding: EdgeInsets.only(
@@ -70,10 +71,12 @@ class _loginmain extends State<loginmain>{
                 ),
                 SizedBox(
                     width: double.infinity,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                         child: Text('一键登录',),
-                        textColor: Colors.yellow,
-                        color: Colors.purple,
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Color(0xffEDFCF5)),                //背景颜色
+                        ),
+
                         onPressed: _login)
                 ),
               ],
