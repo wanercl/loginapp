@@ -70,6 +70,18 @@ class News{
         "5月20日 06:44 机器人"
     ),
     News(
+        "https://t.cj.sina.com.cn/articles/view/5224789915/1376bf79b00100werl?cre=tianyi&mod=pctech&loc=1&r=0&rfunc=45&tj=cxvertical_pc_tech&tr=145",
+        "充电2小时，花费30元，持续涨价的共享充电宝还能涨多久？",
+        "https://k.sinaimg.cn/n/sinakd20210512ac/40/w480h360/20210512/88a4-kpzzqmz5133238.jpg/w150h100f1t0l0q100syf.jpg",
+        "5月12日 15:16 涨价"
+    ),
+    News(
+        "https://t.cj.sina.com.cn/articles/view/7018117363/1a24ff8f300100spcd?cre=tianyi&mod=pctech&loc=1&r=0&rfunc=45&tj=cxvertical_pc_tech&tr=145",
+        "滴滴、美团长期处于亏损与收入负增长状态,为何还能财大气粗?",
+        "https://n.sinaimg.cn/sinakd20210512ac/224/w640h384/20210512/071b-kpzzqmz4497040.jpg",
+        "5月12日 11:17 美团 滴滴"
+    ),
+    News(
         "https://t.cj.sina.com.cn/articles/view/7247071404/1aff588ac00100wb9r?cre=tianyi&mod=pctech&loc=5&r=0&rfunc=45&tj=cxvertical_pc_tech&tr=145",
         "共享充电宝风云又起：小电提交招股书，街电、搜电合并为竹芒科技",
         "https://n.sinaimg.cn/sinakd20210511ac/711/w1080h431/20210511/f70f-kpuunne1826688.png",
@@ -86,12 +98,6 @@ class News{
         "职业篮球手因伤退役，投资开店卖嫩牛五方，赔光",
         "https://n.sinaimg.cn/spider2021512/640/w1280h960/20210512/534f-kpzzqmz3983273.png",
         "5月12日 08:33 外卖平台"
-    ),
-    News(
-        "https://t.cj.sina.com.cn/articles/view/7018117363/1a24ff8f300100spcd?cre=tianyi&mod=pctech&loc=1&r=0&rfunc=45&tj=cxvertical_pc_tech&tr=145",
-        "滴滴、美团长期处于亏损与收入负增长状态,为何还能财大气粗?",
-        "https://n.sinaimg.cn/sinakd20210512ac/224/w640h384/20210512/071b-kpzzqmz4497040.jpg",
-        "5月12日 11:17 美团 滴滴"
     ),
     News(
         "https://k.sina.com.cn/article_6237080477_173c24b9d00100xyfe.html?cre=tianyi&mod=pctech&loc=3&r=0&rfunc=45&tj=cxvertical_pc_tech&tr=145",
