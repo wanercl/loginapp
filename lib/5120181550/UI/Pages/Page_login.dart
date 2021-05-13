@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loginapp/5120181550/Page_Main.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loginapp/DataBase.dart';
+
+import 'Page_Main.dart';
+import 'Page_SignUp.dart';
 
 class Page_login extends StatefulWidget{
 
@@ -13,8 +17,16 @@ class Page_login extends StatefulWidget{
 
 class _PageloginState extends State<Page_login>{
   bool showpass=false;
+  TextEditingController number=TextEditingController();
+  TextEditingController pass=TextEditingController();
   void _login(){
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main()));
+    User u=User.check(number.value.text,pass.value.text);
+    if(u!=null){
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main(u)));
+    }
+    else
+      Fluttertoast.showToast(msg: '手机号或密码错误');
   }
 
   void dismiss(){
@@ -42,6 +54,7 @@ class _PageloginState extends State<Page_login>{
               SizedBox(
                 height: 80,
                 child: TextField(
+                  controller: number,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.phone_android_outlined),
                       hintText: '请输入手机号码',
@@ -55,6 +68,7 @@ class _PageloginState extends State<Page_login>{
               SizedBox(
                 height: 80,
                 child: TextField(
+                  controller: pass,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.lock_outline),
                       hintText: '请输入密码',
@@ -74,6 +88,16 @@ class _PageloginState extends State<Page_login>{
                   textColor: Colors.white,
                   color: Colors.blue,
                   onPressed: _login)
+              ),
+              SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                      child: Text('注册',),
+                      textColor: Colors.white,
+                      color: Colors.blue,
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_SignUp()));
+                      })
               ),
             ],
           ),

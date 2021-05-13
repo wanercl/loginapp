@@ -7,10 +7,10 @@ class Page_Main extends StatelessWidget{
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: Text('Page_Main'),
+          title: Text('hello world!'),
         ),
         body: Center(
-          child: Text('主页'),
+          child: Text('欢迎'),
         )
     );
   }
