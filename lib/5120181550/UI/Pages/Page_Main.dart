@@ -24,6 +24,8 @@ class _Page_MainState extends State<Page_Main>{
 
   int _currentpage=0;
 
+  PageController _controller=PageController(initialPage: 0,keepPage: true);
+
   List<Widget> fragments;
 
   @override
@@ -39,12 +41,9 @@ class _Page_MainState extends State<Page_Main>{
 
   void _goto(int index){
     if(index!=_currentpage)
-    setState(() {
-      _currentpage=index;
-    });
+    _currentpage=index;
+    _controller.jumpToPage(_currentpage);
   }
-
-  TabController _tabController; //需要定义一个Controller
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +53,14 @@ class _Page_MainState extends State<Page_Main>{
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('浏览器'),
+              Text('斯沃思特浏览器'),
               IconButton(icon: Icon(Icons.help_outline), onPressed: _help)
             ],
           ),
         ),
-        body: Center(
-          child: fragments[_currentpage],
+        body: PageView(
+          controller: _controller,
+          children: fragments,
         ),
       bottomNavigationBar: BottomNavigationBar(
         items: [

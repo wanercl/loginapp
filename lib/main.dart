@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loginapp/5120182190/loginpage.dart';
+import 'package:loginapp/5120181550/UI/Pages/Page_login.dart';
+import 'package:loginapp/5120181550/UI/Views/DropFreshView.dart';
 import 'package:loginapp/DataBase.dart';
 
-import 'loginapp/5120182190/loginmain.dart';
 
 void main() {
   User.init();
@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '欢迎登陆',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
-      home: loginmain(),
+      home: Page_login()
     );
   }
 }
