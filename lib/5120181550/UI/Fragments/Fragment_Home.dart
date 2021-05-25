@@ -91,31 +91,22 @@ class _State_Home extends State<Fragment_Home>  with SingleTickerProviderStateMi
     // TODO: implement build
     return Column(
       children: [
-          TopListBar.builder(
-            itemcounts: 6,
-            itembuilder: (context,index){
-              return SizedBox(
-                width: 130,
-                child: Center(
-                  child: Row(
-                    children: [
-                      Icon(Icons.adb),
-                      Text('自定义视图$index')
-                    ],
-                  )
-                ),
-              );
-            },
+          TopListBar(
+            texts: [
+              '综合新闻',
+              'NBA',
+              '新冠疫情',
+              '常识测验'
+            ],
             height: 30,
-            /*padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-            Unselectedbackcolor: Colors.red,
+            padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
             onItemTap: (index){
               Fluttertoast.showToast(msg: index.toString());
             },
             style: TextStyle(
               fontSize: 20,
               color: Colors.black//此处设置颜色信息将无效
-            ),*/
+            ),
           ),
         Expanded(
           child: PageView(
