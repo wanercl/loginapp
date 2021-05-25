@@ -53,12 +53,23 @@ class News{
   String picUrl;
   String url;
   News(
-      this.id,
-      this.ctime,
-      this.title,
-      this.description,
-      this.source,
-      this.picUrl,
-      this.url
-      );
+    this.id,
+    this.ctime,
+    this.title,
+    this.description,
+    this.source,
+    this.picUrl,
+    this.url
+  );
+}
+
+class Life{
+  String title;
+  int answer;
+  String analyse;
+  Life(
+    this.title,
+    this.answer,
+    this.analyse
+  );
 }
