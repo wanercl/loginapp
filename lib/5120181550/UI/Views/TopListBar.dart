@@ -96,37 +96,43 @@ class _State_TopListBar_NORMAL extends State<TopListBar>{
     // TODO: implement build
     return SizedBox(
       height: widget._height,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: widget.texts.length,
-        itemBuilder: (context,index){
-          return InkWell(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: index==widget.currentindex ? widget._Selectedbackcolor:widget._Unselectedbackcolor
-              ),
-              child: Center(
-                child: Padding(
-                  padding: widget._padding,
-                  child: Text(
-                    widget.texts[index],
-                    style: widget._style.merge(TextStyle(
-                        color: index==widget.currentindex ? widget._Selectedcolor:widget._Unselectedcolor
-                    )),
+      width: double.infinity,
+      child: Container(
+        decoration: BoxDecoration(
+          color: widget._Unselectedbackcolor
+        ),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: widget.texts.length,
+          itemBuilder: (context,index){
+            return InkWell(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: index==widget.currentindex ? widget._Selectedbackcolor:widget._Unselectedbackcolor
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: widget._padding,
+                    child: Text(
+                      widget.texts[index],
+                      style: widget._style.merge(TextStyle(
+                          color: index==widget.currentindex ? widget._Selectedcolor:widget._Unselectedcolor
+                      )),
+                    ),
                   ),
                 ),
               ),
-            ),
-            onTap: (){
-              if(index!=widget.currentindex){
-                widget.currentindex=index;
-                if(widget._onItemTap!=null)
-                  widget._onItemTap(index);
-                setState(() {});
-              }
-            },
-          );
-        },
+              onTap: (){
+                if(index!=widget.currentindex){
+                  widget.currentindex=index;
+                  if(widget._onItemTap!=null)
+                    widget._onItemTap(index);
+                  setState(() {});
+                }
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -155,5 +161,4 @@ class _State_TopListBar_BUILDER extends State<TopListBar>{
       ),
     );
   }
-
 }

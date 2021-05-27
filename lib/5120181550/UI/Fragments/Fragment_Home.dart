@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:loginapp/5120181550/API.dart';
 import 'package:loginapp/5120181550/UI/Fragments/Fragment_Life.dart';
-import 'package:loginapp/5120181550/UI/Views/DropFreshView.dart';
 import 'package:loginapp/5120181550/UI/Views/GridItem_News.dart';
 import 'package:loginapp/5120181550/UI/Views/TopListBar.dart';
 import 'package:loginapp/5120181550/UI/Views/ListItem_News.dart';
@@ -12,12 +8,6 @@ import 'package:loginapp/DataBase.dart';
 import 'Fragment_News.dart';
 
 class Fragment_Home extends StatefulWidget{
-
-  static Fragment_Home _instanse;
-
-  Fragment_Home(){
-    _instanse=this;
-  }
 
   @override
   State<StatefulWidget> createState() {
@@ -29,13 +19,6 @@ class Fragment_Home extends StatefulWidget{
 class _State_Home extends State<Fragment_Home>  with SingleTickerProviderStateMixin,AutomaticKeepAliveClientMixin{
   int currentfragment=0;
 
-  TabController _tabController;
-
-  static _State_Home _instanse;
-
-  _State_Home(){
-    _instanse=this;
-  }
 
   static List<News> news=[];
   static List<ListItem_News> items=[];
@@ -47,18 +30,7 @@ class _State_Home extends State<Fragment_Home>  with SingleTickerProviderStateMi
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
     _pageController = PageController(initialPage: 0,keepPage: true);
-    ()async{
-      if(!news.isEmpty)return;
-      news =await API.GetNews();
-      for(News n in news){
-        items.add(ListItem_News(n));
-        grids.add(GridItem_News(n));
-      }
-      setState(() {
-      });
-    }();
   }
 
   @override
