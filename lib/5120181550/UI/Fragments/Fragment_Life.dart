@@ -11,15 +11,23 @@ class Fragment_Life extends StatefulWidget{
 
 }
 
-class _State_Life extends State<Fragment_Life>{
+class _State_Life extends State<Fragment_Life> with AutomaticKeepAliveClientMixin{
 
-  Life life;
+  Life _life;
+  int _state=-1;
+  int _sel=0;
 
   @override
-  void initState() {
+  Future<void> initState() {
     // TODO: implement initState
     super.initState();
-    //life=API.GetLife().asStream().;
+    //life=;
+    ()async{
+      _life=await API.GetLife();
+      setState(() {
+
+      });
+    }();
   }
 
   @override
@@ -27,15 +35,15 @@ class _State_Life extends State<Fragment_Life>{
     // TODO: implement build
     return Column(
       children: [
-        Expanded(child:
-          Column(
+        Expanded(
+          child: _life !=null? Column(
             children: [
               Padding(
                   padding: EdgeInsets.only(left: 10,top: 20,right: 10),
                   child: SizedBox(
                     width: double.infinity,
                     child: Text(
-                      life.title,
+                      _life.title,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20
@@ -47,21 +55,92 @@ class _State_Life extends State<Fragment_Life>{
                   padding: EdgeInsets.only(left: 10,top: 20,right: 10),
                   child: SizedBox(
                     width: double.infinity,
-                    child: Text('正确'),
+                    child: InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: (){
+                            if(_state==1){
+                              if(_state==_life.answer)
+                                return Colors.blue;
+                              else
+                                return Colors.red;
+                            }
+                            return null;
+                          }()
+                        ),
+                        child: Text(
+                          '正确',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),
+                        ),
+                      ),
+                      onTap: (){
+                        if(_state==-1){
+                          _state=1;
+                          setState(() {
+                          });
+                        }
+                      },
+                    ),
                   )
               ),
               Padding(
                   padding: EdgeInsets.only(left: 10,top: 20,right: 10),
                   child: SizedBox(
                     width: double.infinity,
-                    child: Text('错误'),
+                    child: InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: (){
+                              if(_state==0){
+                                if(_state==_life.answer)
+                                  return Colors.blue;
+                                else
+                                  return Colors.red;
+                              }
+                              return null;
+                            }()
+                        ),
+                        child: Text(
+                          '错误',
+                          style: TextStyle(
+                              fontSize: 18
+                          ),
+                        ),
+                      ),
+                      onTap: (){
+                        if(_state==-1){
+                          _state=0;
+                          setState(() {
+                          });
+                        }
+                      },
+                    ),
                   )
               )
             ],
-          )
+          ):Text('加载中')
+        ),
+        Container(
+          height: _state==-1||_state==_life.answer? 0:null,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white
+          ),
+          child: Padding(
+            padding: EdgeInsets.only(left: 10,right: 10,bottom: 10),
+            child: Text(
+              _life.analyse,
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 20
+              ),
+            ),
+          ),
         ),
         SizedBox(
-          height: 30,
+          height: 45,
           width: double.infinity,
           child: InkWell(
             child: Container(
@@ -70,24 +149,30 @@ class _State_Life extends State<Fragment_Life>{
               ),
               child: Center(
                 child: Text(
-                  '我知道了，下一个',
+                  _state==-1||_state==_life.answer?'下一个':'我知道了，下一个',
                   style: TextStyle(
-                    color: Colors.white
+                    color: Colors.white ,
+                    fontSize: 20
                   ),
                 ),
               ),
             ),
-            onTap: onTap,
+            onTap: _onTap,
           ),
         )
       ],
     );
   }
 
-  void onTap() async{
-    life=await API.GetLife();
+  void _onTap() async{
+    _life=await API.GetLife();
+    _state=-1;
     setState(() {
     });
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
 }

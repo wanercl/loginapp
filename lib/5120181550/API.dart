@@ -38,7 +38,7 @@ class API{
   static Future<Life> GetLife() async{
     print('requestapi');
     Map data;
-    String url=REQUESTURL
+    String url=LIFEURL
         +"?key="+APIKEY;
     Life life=null;
     try {
@@ -47,9 +47,9 @@ class API{
       if(response.statusCode!=200)
         return null;
       List list=data['newslist'];
-      for(Map n in list){
-        life=Life(n['title'],n['answer'],n['analyse']);
-      }
+      print(list);
+      Map n = list[0];
+      life=Life(n['title'],n['answer'],n['analyse']);
     }on Exception catch(error){
       print(error);
       return null;
