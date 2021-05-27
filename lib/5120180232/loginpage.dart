@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:loginapp/5120180232/home/home.dart';
+
 
 class Login extends StatefulWidget {
   @override
@@ -21,8 +22,9 @@ class _Login extends State<Login> {
       loginForm.save();
       print('userName: ' + userName + ' password: ' + password);
     }
+    Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(builder: (context){
-      return SecondScreen();}));
+      return HomeScreen();}));
   }
 
   void showPassWord() {
@@ -35,7 +37,7 @@ class _Login extends State<Login> {
     return new MaterialApp(
       title: 'LOGIN Demo',
       home: new Scaffold(
-        body: new Column(
+        body: new ListView(
           children: <Widget>[
             new Container(
                 padding: EdgeInsets.only(top: 100.0, bottom: 10.0),
@@ -178,83 +180,3 @@ class _Login extends State<Login> {
     );
   }
 }
-
-class SecondScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Welcome"),
-      ),
-    );
-  }
-}
-
-class NavigationIconView{
-  final BottomNavigationBarItem item;
-  final AnimationController controller;
-
-  NavigationIconView({Widget icon,Widget title,TickerProvider vsync}):
-      item = new BottomNavigationBarItem(
-        icon: icon,
-        title: title,
-      ),
-      controller = new AnimationController(
-          duration: kTabScrollDuration,
-          vsync: vsync
-      );
-}
-
-class BottomNavigationWidge extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() => BottomNavigationWidgeState();
-}
-
-class BottomNavigationWidgeState extends State<BottomNavigationWidge>{
-  final _bottomNavigationColor = Colors.lightBlue;
-  int _currentIndex = 0;
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: _bottomNavigationColor,
-              ),
-              title:Text(
-                '首页',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle,
-                color: _bottomNavigationColor,
-              ),
-              title:Text(
-                '我的',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.attach_file,
-                color: _bottomNavigationColor,
-              ),
-              title: Text(
-                '关于',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
-        ],
-        currentIndex: _currentIndex,
-        onTap: (int index){
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-      ),
-    );
-  }
-}
-

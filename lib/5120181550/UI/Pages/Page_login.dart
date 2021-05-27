@@ -21,6 +21,8 @@ class _PageloginState extends State<Page_login>{
   TextEditingController pass=TextEditingController();
   void _login(){
     User u=User.check(number.value.text,pass.value.text);
+    print(number.value.text);
+    print(pass.value.text);
     if(u!=null){
       Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main(u)));
