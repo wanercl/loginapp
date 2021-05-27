@@ -151,7 +151,7 @@ class _State_Life extends State<Fragment_Life> with AutomaticKeepAliveClientMixi
                 child: Text(
                   _state==-1||_state==_life.answer?'下一个':'我知道了，下一个',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.white ,
                     fontSize: 20
                   ),
                 ),
