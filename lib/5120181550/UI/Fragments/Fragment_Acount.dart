@@ -2,11 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loginapp/DataBase.dart';
 
-class Fragment_Acount extends StatelessWidget{
+class Fragment_Acount extends StatefulWidget{
 
   User u;
 
   Fragment_Acount(this.u);
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _State_Acount();
+  }
+
+}
+
+class _State_Acount extends State<Fragment_Acount> with AutomaticKeepAliveClientMixin{
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +38,7 @@ class Fragment_Acount extends StatelessWidget{
                 ),
                 Padding(
                   padding: EdgeInsets.all(5),
-                  child: Text(u.nickname),
+                  child: Text(widget.u.nickname),
                 )
               ],
             ),
@@ -41,18 +51,18 @@ class Fragment_Acount extends StatelessWidget{
               SizedBox(
                 width: 85,
                 child: Text(
-                  '姓名:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black
-                  )
+                    '姓名:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black
+                    )
                 ),
               ),
               Text(
-                u.name,
-                style: TextStyle(
-                  fontSize: 18,
-                )
+                  widget.u.name,
+                  style: TextStyle(
+                    fontSize: 18,
+                  )
               )
             ],
           ),
@@ -64,18 +74,18 @@ class Fragment_Acount extends StatelessWidget{
               SizedBox(
                 width: 85,
                 child: Text(
-                  '性别:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black
-                  )
+                    '性别:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black
+                    )
                 ),
               ),
               Text(
-                u.sex==1?'男':'女',
-                style: TextStyle(
-                  fontSize: 18,
-                )
+                  widget.u.sex==1?'男':'女',
+                  style: TextStyle(
+                    fontSize: 18,
+                  )
               )
             ],
           ),
@@ -87,18 +97,18 @@ class Fragment_Acount extends StatelessWidget{
               SizedBox(
                 width: 85,
                 child: Text(
-                  '手机号:',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black
-                  )
+                    '手机号:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black
+                    )
                 ),
               ),
               Text(
-                u.number,
+                widget.u.number,
                 style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.blue
+                    fontSize: 18,
+                    color: Colors.blue
                 ),
               )
             ],
@@ -113,16 +123,16 @@ class Fragment_Acount extends StatelessWidget{
                 child: Text(
                   '账号等级:',
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black
+                      fontSize: 18,
+                      color: Colors.black
                   ),
                 ),
               ),
               Text(
-                u.level.toString()+'级',
-                style: TextStyle(
-                  fontSize: 18,
-                )
+                  widget.u.level.toString()+'级',
+                  style: TextStyle(
+                    fontSize: 18,
+                  )
               )
             ],
           ),
@@ -131,4 +141,7 @@ class Fragment_Acount extends StatelessWidget{
     );
   }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

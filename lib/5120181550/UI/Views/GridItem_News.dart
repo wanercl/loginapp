@@ -34,19 +34,26 @@ class GridItem_News extends StatelessWidget{
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                n.imgurl,
-                width: double.infinity,
-                fit: BoxFit.contain,
+              Container(
+                constraints: BoxConstraints(
+                  maxHeight: 250
+                ),
+                child: Image.network(
+                  n.picUrl,
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth,
+                  errorBuilder: (context,error,stacktrace)=>Image.asset('images/img_imgloadfailed.jpg'),
+                ),
               ),
               Text(
                 n.title,
                 style: TextStyle(
                     fontSize: 16
                 ),
+                maxLines: 1,
               ),
               Text(
-                n.description,
+                n.ctime+' '+n.source,
                 style: TextStyle(
                     color: Colors.black26
                 ),

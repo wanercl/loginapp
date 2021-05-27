@@ -44,8 +44,9 @@ class ListItem_News extends StatelessWidget{
                         width: 120,
                         height: double.infinity,
                         child: Image.network(
-                          n.imgurl,
+                          n.picUrl,
                           fit: BoxFit.cover,
+                          errorBuilder: (context,error,stacktrace)=>Image.asset('images/img_imgloadfailed.jpg'),
                         ),
                       ),
                       Padding(
@@ -55,18 +56,30 @@ class ListItem_News extends StatelessWidget{
                           children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width-151,
-                              height: 70,
+                              height: 26,
                               child: Text(
                                 n.title,
                                 style: TextStyle(
                                   fontSize: 16,
+                                ),
+                                maxLines: 1,
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width-151,
+                              height: 44,
+                              child: Text(
+                                n.description,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey
                                 ),
                               ),
                             ),
                             SizedBox(
                               height: 20,
                               child: Text(
-                                n.description,
+                                n.ctime+' '+n.source,
                                 style: TextStyle(
                                     color: Colors.black26
                                 ),
