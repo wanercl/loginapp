@@ -2,15 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loginapp/5120181550/UI/Fragments/Fragment_Acount.dart';
 import 'package:loginapp/5120181550/UI/Fragments/Fragment_Home.dart';
+import 'package:loginapp/5120181550/Utils/SQLiteHelper.dart';
 import 'package:loginapp/DataBase.dart';
 
 import 'Page_Help.dart';
 
 class Page_Main extends StatefulWidget{
-
-  User u;
-
-  Page_Main(this.u);
 
   @override
   State<StatefulWidget> createState() {
@@ -32,7 +29,7 @@ class _Page_MainState extends State<Page_Main>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    fragments=[Fragment_Home(),Fragment_Acount(widget.u)];
+    fragments=[Fragment_Home(),Fragment_Acount(SQLiteHelper.CurrentUser)];
   }
 
   void _help(){

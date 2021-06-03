@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loginapp/5120181550/UI/Pages/Page_Info.dart';
+import 'package:loginapp/5120181550/Utils/SQLiteHelper.dart';
 import 'package:loginapp/DataBase.dart';
 
 class ListItem_News extends StatelessWidget{
@@ -16,6 +17,7 @@ class ListItem_News extends StatelessWidget{
     return InkWell(
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Info(n.title,n.url)));
+        SQLiteHelper.AddNEWS(n);
       },
       child: Column(
         children: [

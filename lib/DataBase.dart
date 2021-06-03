@@ -18,30 +18,6 @@ class User{
       this.sex
       );
 
-  static List users=List();
-
-  static User check(String numder,String pass){
-    for(User user in users){
-      if(user.number==numder&&user.pass==pass)
-        return user;
-    }
-    return null;
-  }
-
-  static bool adduser(User user){
-    for(User u in users){
-      if(u.number==user.number)
-        return false;
-    }
-    users.add(user);
-    return true;
-  }
-
-  static void init(){
-    users.add(User('陈龙', '万年老二','19960209350', '123456', 1, null, 1));
-    users.add(User('邹存玉', '万年老二','15508060186', '123456', 1, null, 0));
-    users.add(User('杨璇', '万年老二','13208285009', '999999', 1, null, 0));
-  }
 }
 
 class News{

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loginapp/5120180232/loginpage.dart';
+import 'package:loginapp/5120181550/UI/Pages/Page_login.dart';
 import 'package:loginapp/DataBase.dart';
 
 void main() {
@@ -10,12 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    User.init();
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: Page_login(),
     );
   }
 }

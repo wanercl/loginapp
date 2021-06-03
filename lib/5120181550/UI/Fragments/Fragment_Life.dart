@@ -120,7 +120,7 @@ class _State_Life extends State<Fragment_Life> with AutomaticKeepAliveClientMixi
                   )
               )
             ],
-          ):Text('加载中')
+          ):Text('')
         ),
         Container(
           height: _state==-1||_state==_life.answer? 0:null,
@@ -131,7 +131,7 @@ class _State_Life extends State<Fragment_Life> with AutomaticKeepAliveClientMixi
           child: Padding(
             padding: EdgeInsets.only(left: 10,right: 10,bottom: 10),
             child: Text(
-              _life.analyse,
+              _life!=null?_life.analyse:'',
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 20
@@ -149,7 +149,7 @@ class _State_Life extends State<Fragment_Life> with AutomaticKeepAliveClientMixi
               ),
               child: Center(
                 child: Text(
-                  _state==-1||_state==_life.answer?'下一个':'我知道了，下一个',
+                  _life!=null?_state==-1||_state==_life.answer?'下一个':'我知道了，下一个':'加载中',
                   style: TextStyle(
                     color: Colors.white ,
                     fontSize: 20

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:loginapp/5120181550/UI/Pages/Page_Modify.dart';
 import 'package:loginapp/DataBase.dart';
 
 class Fragment_Acount extends StatefulWidget{
@@ -137,6 +138,21 @@ class _State_Acount extends State<Fragment_Acount> with AutomaticKeepAliveClient
             ],
           ),
         ),
+        Padding(
+          padding: EdgeInsets.only(left: 20,top: 5,bottom: 5),
+          child: InkWell(
+            child: Text(
+              '修改密码',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue
+              ),
+            ),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder:(BuildContext context)=>Page_Modify()));
+            } ,
+          ),
+        )
       ],
     );
   }

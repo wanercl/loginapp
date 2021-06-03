@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loginapp/5120181550/Utils/SQLiteHelper.dart';
 import 'package:loginapp/DataBase.dart';
 
 class Page_SignUp extends StatefulWidget{
@@ -8,7 +9,6 @@ class Page_SignUp extends StatefulWidget{
     // TODO: implement createState
     return _Pase_SignUpState();
   }
-
 }
 
 class _Pase_SignUpState extends State<Page_SignUp>{
@@ -16,14 +16,14 @@ class _Pase_SignUpState extends State<Page_SignUp>{
   TextEditingController name=TextEditingController();
   TextEditingController pass=TextEditingController();
   TextEditingController pass_=TextEditingController();
-  int sex;
+  int sex=1;
 
-  void _signup(){
+  void _signup()async{
     if(pass.value.text!=pass_.value.text){
       Fluttertoast.showToast(msg: '两次密码不一致');
       return;
     }
-    if(User.adduser(User(name.value.text, name.value.text, number.value.text, pass.value.text, 1, null, 0))){
+    if(await SQLiteHelper.AddUSER(User(name.value.text, name.value.text, number.value.text, pass.value.text, 1, null, sex))){
       Navigator.pop(context);
       Fluttertoast.showToast(msg: '注册成功');
       return;
@@ -46,7 +46,7 @@ class _Pase_SignUpState extends State<Page_SignUp>{
               top: 15
           ),
           child: Center(
-            child: Column(
+            child: ListView(
               children: [
                 SizedBox(
                   height: 80,
@@ -58,7 +58,7 @@ class _Pase_SignUpState extends State<Page_SignUp>{
                         helperText: '您的姓名',
                         border: OutlineInputBorder()
                     ),
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     autofocus: false,
                   ),
                 ),
@@ -68,14 +68,28 @@ class _Pase_SignUpState extends State<Page_SignUp>{
                   child: Row(
                     children: [
                       Text('性别: '),
-                      Icon(
-                        Icons.check_circle_outline_rounded,
-                        color: Colors.blue,
+                      InkWell(
+                        child: Icon(
+                          sex==1?Icons.check_circle_outline_rounded:Icons.radio_button_unchecked,
+                          color: sex==1?Colors.blue:null,
+                        ),
+                        onTap: (){
+                          sex=1;
+                          setState(() {
+                          });
+                        },
                       ),
                       Text(' 男 '),
-                      Icon(
-                        Icons.radio_button_unchecked,
-                        color: Colors.grey,
+                      InkWell(
+                        child: Icon(
+                          sex==0?Icons.check_circle_outline_rounded:Icons.radio_button_unchecked,
+                          color: sex==0?Colors.blue:null,
+                        ),
+                        onTap: (){
+                          sex=0;
+                          setState(() {
+                          });
+                        },
                       ),
                       Text(' 女 '),
                     ],

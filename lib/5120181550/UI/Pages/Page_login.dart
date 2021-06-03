@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loginapp/5120181550/Utils/SQLiteHelper.dart';
+import 'package:loginapp/5120181550/Utils/SharedPreferencesHelper.dart';
 import 'package:loginapp/DataBase.dart';
 
 import 'Page_Main.dart';
@@ -19,16 +21,31 @@ class _PageloginState extends State<Page_login>{
   bool showpass=false;
   TextEditingController number=TextEditingController();
   TextEditingController pass=TextEditingController();
-  void _login(){
-    User u=User.check(number.value.text,pass.value.text);
-    print(number.value.text);
-    print(pass.value.text);
+  void _login() async{
+    SharedPreferencesHelper.SetLastInfo(number.value.text, pass.value.text);
+    User u= await SQLiteHelper.CheckUSER(number.value.text,pass.value.text);
     if(u!=null){
+      SQLiteHelper.SetCurrentUser(u);
       Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main(u)));
+      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main()));
     }
     else
       Fluttertoast.showToast(msg: '手机号或密码错误');
+  }
+
+  Map info=null;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ()async{
+      info=await SharedPreferencesHelper.GetLastInfo();
+      number.text=info['NUMBER'];
+      pass.text=info['PASS'];
+      setState(() {
+      });
+    }();
   }
 
   void dismiss(){
@@ -51,7 +68,7 @@ class _PageloginState extends State<Page_login>{
           top: 15
         ),
         child: Center(
-          child: Column(
+          child: ListView(
             children: [
               SizedBox(
                 height: 80,
