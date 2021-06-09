@@ -53,6 +53,7 @@ class SQLiteHelper{
     n['SOURCE']=news.source;
     n['PICURL']=news.picUrl;
     n['URL']=news.url;
+    db.delete("NEWS",where: "ID=?",whereArgs: [news.id]);
     db.insert("NEWS", n);
   }
 

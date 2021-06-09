@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loginapp/5120181550/Utils/SQLiteHelper.dart';
@@ -22,9 +23,12 @@ class _PageloginState extends State<Page_login>{
   TextEditingController number=TextEditingController();
   TextEditingController pass=TextEditingController();
   void _login() async{
-    SharedPreferencesHelper.SetLastInfo(number.value.text, pass.value.text);
     User u= await SQLiteHelper.CheckUSER(number.value.text,pass.value.text);
     if(u!=null){
+      if(_issave)
+        SharedPreferencesHelper.SetLastInfo(number.value.text, pass.value.text,true);
+      else
+        SharedPreferencesHelper.SetLastInfo('', '',false);
       SQLiteHelper.SetCurrentUser(u);
       Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Page_Main()));
@@ -34,6 +38,7 @@ class _PageloginState extends State<Page_login>{
   }
 
   Map info=null;
+  bool _issave=false;
 
   @override
   void initState() {
@@ -43,6 +48,7 @@ class _PageloginState extends State<Page_login>{
       info=await SharedPreferencesHelper.GetLastInfo();
       number.text=info['NUMBER'];
       pass.text=info['PASS'];
+      _issave=info['FLAG'];
       setState(() {
       });
     }();
@@ -99,6 +105,33 @@ class _PageloginState extends State<Page_login>{
                   keyboardType: TextInputType.visiblePassword,
                   autofocus: false,
                 ),
+              ),
+              SizedBox(
+                  width: double.infinity,
+                  child: InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10,bottom: 5),
+                      child: Row(
+                        children: [
+                          Icon(_issave?Icons.check_box_outlined:Icons.check_box_outline_blank_outlined),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Text(
+                              '记住密码',
+                              style: TextStyle(
+                                  fontSize: 18
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: (){
+                      _issave=!_issave;
+                      setState(() {
+                      });
+                    },
+                  )
               ),
               SizedBox(
                 width: double.infinity,

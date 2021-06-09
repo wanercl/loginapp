@@ -40,6 +40,8 @@ class _Page_MainState extends State<Page_Main>{
     if(index!=_currentpage)
     _currentpage=index;
     _controller.jumpToPage(_currentpage);
+    setState(() {
+    });
   }
 
   @override
