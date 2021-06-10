@@ -66,7 +66,7 @@ class _State_News extends State<Fragment_News> with SingleTickerProviderStateMix
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _pageController = PageController(initialPage: 0,keepPage: true);
-        ()async{
+    ()async{
       if(!news.isEmpty)return;
       news =await API.GetNews();
       for(News n in news){
