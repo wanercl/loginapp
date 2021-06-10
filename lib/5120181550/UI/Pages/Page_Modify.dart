@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loginapp/5120181550/UI/Pages/Page_login.dart';
 import 'package:loginapp/5120181550/Utils/SQLiteHelper.dart';
 
 class Page_Modify extends StatelessWidget{
@@ -74,6 +75,6 @@ class Page_Modify extends StatelessWidget{
     }
     SQLiteHelper.ModifyUSERPASS(pass.value.text);
     Fluttertoast.showToast(msg: '修改成功');
-    Navigator.pop(context);
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context)=>Page_login()),(route)=>route==null);
   }
 }

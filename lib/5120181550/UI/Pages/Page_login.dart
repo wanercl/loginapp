@@ -46,9 +46,9 @@ class _PageloginState extends State<Page_login>{
     super.initState();
     ()async{
       info=await SharedPreferencesHelper.GetLastInfo();
-      number.text=info['NUMBER'];
-      pass.text=info['PASS'];
-      _issave=info['FLAG'];
+      number.text=info['NUMBER']??false;
+      pass.text=info['PASS']??false;
+      _issave=info['FLAG']??false;
       setState(() {
       });
     }();
@@ -65,7 +65,7 @@ class _PageloginState extends State<Page_login>{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page_Login'),
+        title: Text('登录'),
       ),
       body: Padding(
         padding: EdgeInsets.only(

@@ -31,7 +31,7 @@ class _State_News extends State<Fragment_News> with SingleTickerProviderStateMix
   static List<News> news=[];
   static List<ListItem_News> items=[];
   static List<GridItem_News> grids=[];
-  static List<Widget> fragments=[_Fragment_List(items),_Fragment_Grid(grids)];
+  List<Widget> fragments=[_Fragment_List(items),_Fragment_Grid(grids)];
 
   Future<bool> _onLoading() async {
     // monitor network fetch
